@@ -1,25 +1,25 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class SettingsController with ChangeNotifier {
-//   ThemeMode? themeMode;
+class SettingsController with ChangeNotifier {
+  ThemeMode? themeMode;
 
-//   //ThemeMode get themeMode => _themeMode;
+  //ThemeMode get themeMode => _themeMode;
 
-//   Future<void> loadSettings() async {
-//     themeMode = ThemeMode.system;
+  Future<void> loadSettings() async {
+    themeMode = ThemeMode.system;
 
-//     notifyListeners();
-//   }
+    notifyListeners();
+  }
 
-//   Future<void> updateThemeMode(ThemeMode? newThemeMode) async {
-//     if (newThemeMode == null) return;
+  Future<void> updateThemeMode(ThemeMode? newThemeMode) async {
+    if (newThemeMode == null) return;
 
-//     if (newThemeMode == themeMode) return;
+    if (newThemeMode == themeMode) return;
 
-//     themeMode = newThemeMode;
+    themeMode = newThemeMode;
 
-//     notifyListeners();
+    notifyListeners();
 
-//     newThemeMode;
-//   }
-// }
+    newThemeMode;
+  }
+}

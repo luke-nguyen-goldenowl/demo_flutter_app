@@ -1,7 +1,10 @@
+import 'package:demo_widget_app/setting/setting_controller.dart';
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  final SettingsController settingsController;
+  const SettingScreen({Key? key, required this.settingsController})
+      : super(key: key);
 
   static const String routeName = '/setting';
 
@@ -20,10 +23,11 @@ class _SettingScreenState extends State<SettingScreen> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: DropdownButton<ThemeMode>(
-          value: defaultTheme,
+          value: widget.settingsController.themeMode,
           onChanged: (ThemeMode? newTheme) {
             setState(() {
               defaultTheme = newTheme!;
+              widget.settingsController.updateThemeMode(newTheme);
             });
           },
           items: const [

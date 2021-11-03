@@ -1,5 +1,6 @@
 import 'package:demo_widget_app/sample/list_sample_screen.dart';
 import 'package:demo_widget_app/sample/sample_detail_screen.dart';
+import 'package:demo_widget_app/setting/setting_controller.dart';
 import 'package:demo_widget_app/setting/setting_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,35 +15,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final settingsController = SettingsController();
-    // return AnimatedBuilder(
-    //   animation: settingsController,
-    //   builder: (BuildContext context, Widget? child) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.dark,
-      onGenerateRoute: (RouteSettings routeSettings) {
-        return MaterialPageRoute<void>(
-          settings: routeSettings,
-          builder: (BuildContext context) {
-            switch (routeSettings.name) {
-              case SettingScreen.routeName:
-                return const SettingScreen();
-              case SampleDetailScreen.routeName:
-                return const SampleDetailScreen();
-              case ListSampleScreen.routeName:
+    final controller = SettingsController();
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(),
+          darkTheme: ThemeData.dark(),
+          themeMode: controller.themeMode,
+          onGenerateRoute: (RouteSettings routeSettings) {
+            return MaterialPageRoute<void>(
+              settings: routeSettings,
+              builder: (BuildContext context) {
+                switch (routeSettings.name) {
+                  case SettingScreen.routeName:
+                    return SettingScreen(settingsController: controller);
+                  case SampleDetailScreen.routeName:
+                    return const SampleDetailScreen();
+                  case ListSampleScreen.routeName:
 
-              default:
-                return const ListSampleScreen();
-            }
+                  default:
+                    return const ListSampleScreen();
+                }
+              },
+            );
           },
+          home: const ListSampleScreen(),
         );
       },
-      home: const ListSampleScreen(),
     );
-    //   },
-    // );
   }
 }
